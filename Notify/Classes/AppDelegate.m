@@ -36,11 +36,17 @@
     #import "CDVURLProtocol.h"
 #endif
 
+#import "PushNotification.h"
+
+#define UA_HOST @"https://go.urbanairship.com/"
+
+#define UA_KEY @"BRMfzxn1SM2HL2mitUXUDA"
+#define UA_SECRET @"vU-DKCPDSIe5JH_x_XIhgg"
 
 @implementation AppDelegate
 
 @synthesize invokeString, window, viewController;
-
+@synthesize launchNotification;
 - (id) init
 {	
 	/** If you need to do any extra app-specific initialization, you can do it here
@@ -61,11 +67,16 @@
  */
 - (BOOL) application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {    
+    NSLog(@"App finished launching");
     NSURL* url = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
     if (url && [url isKindOfClass:[NSURL class]]) {
         self.invokeString = [url absoluteString];
 		NSLog(@"Notify launchOptions = %@", url);
-    }    
+    }  
+    // cache notification, if any, until webview finished loading, then process it if needed
+    // assume will not receive another message before webview loaded
+    self.launchNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    application.applicationIconBadgeNumber = 0; 
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     self.window = [[[UIWindow alloc] initWithFrame:screenBounds] autorelease];
@@ -101,6 +112,7 @@
         }
     } 
     
+    
     if (forceStartupRotation) {
         NSLog(@"supportedOrientations: %@", self.viewController.supportedOrientations);
         // The first item in the supportedOrientations array is the start orientation (guaranteed to be at least Portrait)
@@ -122,6 +134,11 @@
     if (!url) { 
         return NO; 
     }
+    
+    if ([[url scheme] isEqualToString:@"http"] || [[url scheme] isEqualToString:@"https"]) {
+		[[UIApplication sharedApplication] openURL:url];
+		return NO;
+	}
     
 	// calls into javascript global function 'handleOpenURL'
     NSString* jsString = [NSString stringWithFormat:@"handleOpenURL(\"%@\");", url];
@@ -161,6 +178,16 @@
 		NSString* jsString = [NSString stringWithFormat:@"var invokeString = \"%@\";", self.invokeString];
 		[theWebView stringByEvaluatingJavaScriptFromString:jsString];
 	}
+    
+    if (launchNotification) {
+        PushNotification *pushHandler = [self getCommandInstance:@"PushNotification"];
+        
+        //NOTE: this drops payloads outside of the "aps" key
+        pushHandler.notificationMessage = [launchNotification objectForKey:@"aps"];
+        
+        //clear the launchNotification
+        self.launchNotification = nil;
+    }
 	
 	 // Black base color for background matches the native apps
    	theWebView.backgroundColor = [UIColor blackColor];
@@ -183,8 +210,57 @@
 	return [self.viewController webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"didRegisterForRemoteNotification");
+    PushNotification *pushHandler = [self getCommandInstance:@"PushNotification"];
+    [pushHandler didRegisterForRemoteNotificationsWithDeviceToken:deviceToken host:UA_HOST appKey:UA_KEY appSecret:UA_SECRET];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    PushNotification *pushHandler = [self getCommandInstance:@"PushNotification"];
+    [pushHandler didFailToRegisterForRemoteNotificationsWithError:error];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"didReceiveNotification");
+    
+    // Get application state for iOS4.x+ devices, otherwise assume active
+    UIApplicationState appState = UIApplicationStateActive;
+    if ([application respondsToSelector:@selector(applicationState)]) {
+        appState = application.applicationState;
+    }
+    
+    // NOTE this is a 4.x only block -- TODO: add 3.x compatibility
+    if (appState == UIApplicationStateActive) {
+        PushNotification *pushHandler = [self getCommandInstance:@"PushNotification"];
+        pushHandler.notificationMessage = [userInfo objectForKey:@"aps"];
+        [pushHandler notificationReceived];
+    } else {
+        //save it for later
+        NSLog(@"Save notification for later");
+        self.launchNotification = userInfo;
+    }
+}
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    
+    NSLog(@"app became active");
+    
+    //zero badge
+    if(![self.viewController.webView isLoading] && self.launchNotification){
+    application.applicationIconBadgeNumber = 0;
+    PushNotification *pushHandler = [self getCommandInstance:@"PushNotification"];
+    pushHandler.notificationMessage = [self.launchNotification objectForKey:@"aps"];
+    self.launchNotification = nil;
+    [pushHandler performSelectorOnMainThread:@selector(notificationReceived) withObject:pushHandler waitUntilDone:NO];
+    }
+  
+    
+   // [super :application];
+}
+
 - (void) dealloc
 {
+    launchNotification = nil; 
 	[super dealloc];
 }
 

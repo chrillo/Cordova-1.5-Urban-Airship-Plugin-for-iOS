@@ -21,9 +21,14 @@
 	<key>OpenAllWhitelistURLsInWebView</key>
 	<false/>
 	<key>ExternalHosts</key>
-	<array/>
+	<array>
+		<string>*</string>
+		<string>go.urbanairship.com</string>
+	</array>
 	<key>Plugins</key>
 	<dict>
+		<key>pushnotification</key>
+		<string>PushNotification</string>
 		<key>org.apache.cordova.accelerometer</key>
 		<string>CDVAccelerometer</string>
 		<key>org.apache.cordova.camera</key>

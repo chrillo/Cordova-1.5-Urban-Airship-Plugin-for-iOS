@@ -38,6 +38,8 @@
 		43E7CC6D1528D854001B5DC7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E7CC6C1528D854001B5DC7 /* MainViewController.m */; };
 		43E7CC6F1528D854001B5DC7 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E7CC6E1528D854001B5DC7 /* MainViewController.xib */; };
 		43E7CC731528D854001B5DC7 /* verify.sh in Resources */ = {isa = PBXBuildFile; fileRef = 43E7CC721528D854001B5DC7 /* verify.sh */; };
+		43E7CC841528D939001B5DC7 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 43E7CC831528D939001B5DC7 /* www */; };
+		43E7CC8B1528E2A5001B5DC7 /* PushNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E7CC8A1528E2A5001B5DC7 /* PushNotification.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,10 +57,10 @@
 		43E7CC351528D854001B5DC7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		43E7CC371528D854001B5DC7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		43E7CC391528D854001B5DC7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		43E7CC3D1528D854001B5DC7 /* Notify-Info.plist */ = {isa = PBXFileReference; path = "Notify-Info.plist"; sourceTree = "<group>"; };
+		43E7CC3D1528D854001B5DC7 /* Notify-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Notify-Info.plist"; sourceTree = "<group>"; };
 		43E7CC3F1528D854001B5DC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		43E7CC411528D854001B5DC7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		43E7CC431528D854001B5DC7 /* Notify-Prefix.pch */ = {isa = PBXFileReference; path = "Notify-Prefix.pch"; sourceTree = "<group>"; };
+		43E7CC431528D854001B5DC7 /* Notify-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Notify-Prefix.pch"; sourceTree = "<group>"; };
 		43E7CC441528D854001B5DC7 /* Cordova.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cordova.framework; path = /Users/Shared/Cordova/Frameworks/Cordova.framework; sourceTree = "<absolute>"; };
 		43E7CC491528D854001B5DC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		43E7CC4D1528D854001B5DC7 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -71,13 +73,16 @@
 		43E7CC611528D854001B5DC7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/splash/Default@2x.png"; sourceTree = "<group>"; };
 		43E7CC631528D854001B5DC7 /* Capture.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Capture.bundle; path = Resources/Capture.bundle; sourceTree = "<group>"; };
 		43E7CC651528D854001B5DC7 /* Cordova.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Cordova.plist; sourceTree = "<group>"; };
-		43E7CC681528D854001B5DC7 /* AppDelegate.h */ = {isa = PBXFileReference; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
+		43E7CC681528D854001B5DC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		43E7CC691528D854001B5DC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
-		43E7CC6B1528D854001B5DC7 /* MainViewController.h */ = {isa = PBXFileReference; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
+		43E7CC6B1528D854001B5DC7 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
 		43E7CC6C1528D854001B5DC7 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
 		43E7CC6E1528D854001B5DC7 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainViewController.xib; path = Classes/MainViewController.xib; sourceTree = "<group>"; };
-		43E7CC711528D854001B5DC7 /* README */ = {isa = PBXFileReference; name = README; path = Plugins/README; sourceTree = "<group>"; };
+		43E7CC711528D854001B5DC7 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		43E7CC721528D854001B5DC7 /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
+		43E7CC831528D939001B5DC7 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		43E7CC891528E2A5001B5DC7 /* PushNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PushNotification.h; path = Plugins/PushNotification.h; sourceTree = "<group>"; };
+		43E7CC8A1528E2A5001B5DC7 /* PushNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PushNotification.m; path = Plugins/PushNotification.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +120,7 @@
 		43E7CC0F1528D854001B5DC7 = {
 			isa = PBXGroup;
 			children = (
+				43E7CC831528D939001B5DC7 /* www */,
 				43E7CC3B1528D854001B5DC7 /* Notify */,
 				43E7CC201528D854001B5DC7 /* Frameworks */,
 				43E7CC1E1528D854001B5DC7 /* Products */,
@@ -254,6 +260,8 @@
 		43E7CC701528D854001B5DC7 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				43E7CC891528E2A5001B5DC7 /* PushNotification.h */,
+				43E7CC8A1528E2A5001B5DC7 /* PushNotification.m */,
 				43E7CC711528D854001B5DC7 /* README */,
 			);
 			name = Plugins;
@@ -330,6 +338,7 @@
 				43E7CC661528D854001B5DC7 /* Cordova.plist in Resources */,
 				43E7CC6F1528D854001B5DC7 /* MainViewController.xib in Resources */,
 				43E7CC731528D854001B5DC7 /* verify.sh in Resources */,
+				43E7CC841528D939001B5DC7 /* www in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +368,7 @@
 				43E7CC421528D854001B5DC7 /* main.m in Sources */,
 				43E7CC6A1528D854001B5DC7 /* AppDelegate.m in Sources */,
 				43E7CC6D1528D854001B5DC7 /* MainViewController.m in Sources */,
+				43E7CC8B1528E2A5001B5DC7 /* PushNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,11 +443,12 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -453,11 +464,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -476,7 +488,9 @@
 					"DEBUG=1,",
 					"CORDOVA_FRAMEWORK=1",
 				);
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Notify/Notify-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
@@ -506,7 +520,9 @@
 					"NDEBUG=1,",
 					"CORDOVA_FRAMEWORK=1",
 				);
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Notify/Notify-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
@@ -543,6 +559,7 @@
 				43E7CC781528D854001B5DC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
