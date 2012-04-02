@@ -1,0 +1,1 @@
+This is sample code for the integration of Urban Airship into a Phonegap / Cordova App. I modified the old urban airship plugin (https://github.com/urbanairship/ios-phonegap-plugin) to make it work with the changed Cordova APIs. I have this working in a sample app of mine, but I am not really an iOS Developer so I am not sure how production ready this is. 
