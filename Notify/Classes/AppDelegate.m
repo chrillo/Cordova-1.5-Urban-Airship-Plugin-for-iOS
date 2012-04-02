@@ -38,10 +38,11 @@
 
 #import "PushNotification.h"
 
-#define UA_HOST @"https://go.urbanairship.com/"
 
-#define UA_KEY @"BRMfzxn1SM2HL2mitUXUDA"
-#define UA_SECRET @"vU-DKCPDSIe5JH_x_XIhgg"
+
+#define UA_HOST @"https://go.urbanairship.com/"
+#define UA_KEY @"KEY"
+#define UA_SECRET @"SECRET"
 
 @implementation AppDelegate
 
